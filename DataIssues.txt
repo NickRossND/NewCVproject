@@ -1,0 +1,2 @@
+DKU13 patient was missing 1 measurement point on the grid (LP000P020B-1). Copied LP000P010B-1 to fill the void
+DKU17 patient has some outlier data at P160P000. Skews the heatmaps dramatically

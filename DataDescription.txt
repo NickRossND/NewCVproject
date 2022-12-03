@@ -1,0 +1,13 @@
+The paper from which this data originates from is https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8240868/.
+
+I haven't had the opportunity to speak with the former student to discuss the data and partition the data into 
+training and validation sets. I should hear back within the week and will be able to go through every image and notate
+which images indicate a tumor is present.
+
+The number of images for each patient ranges from 48-161(1/2 of left breast and 1/2 of right breast). DKU11_140821 has only 26 images of left breast.
+Each image is a 2D graph that consists of two lines that represent one measurement taken in a series of measurements aligned in a grid structure. 
+The y-axis represents the absorption coefficient at each wavelength which ranges from 650nm to 1000nm. Each individual wavelength is a point. 
+The "Fit" line represents data that was fit to measurements taken at 4 specific wavelengths (658nm, 690nm, 780nm, and 829nm). Each laser was
+sequentially swept from 50-500MHz and the light was detected using an avalanche photodiode that was placed directly on the tissue. The "spectrum" 
+line represents data that was taken using a tungsten–halogen white light source and a fiber coupled to the spectrometer to measure the broadband 
+reflectance spectra. The distance between both light sources and their respective detectors was 28mm.
