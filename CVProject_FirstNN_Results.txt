@@ -1,0 +1,59 @@
+How initial tumor and no tumor dataset splits used in training, validation, and testing were segmented:
+Tumor:
+Only non-augmented files for these patients and side (if Right or Left not listed then it's both sides)-
+'DKU01*Right*' 	'DKU02*Right*' 	'DKU03*Left*' 	'DKU05*Right*' 	'DKU06*' 		'DKU07*Right*' 
+'DKU08*Left*' 	'DKU09*Left*' 	'DKU10*Right*' 	'DKU11*Left*' 	'DKU12*Left*' 	'DKU13*Right*' 
+'DKU14*' 		'DKU15*Right*'	'DKU16*Right*' 	'DKU18*Left*' 	'DKU21*Left*' 	'DKU22*'
+'DKU24*Left*' 	'DKU25*Left*' 	'DKU26*Left*' 	'DKU27*Left*'	'DKU29*Left*' 	'DKU30*Right*' 	
+'DKU31*Left*' 	'DKU32*Right*'
+
+NoTumor:
+All non-tumor images and augmented tumor files for these patients and side- all others
+
+Model Results:
+1)
+Model: "sequential_3"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ conv2d_5 (Conv2D)(3,3)      (None, 4, 4, 3)           30        
+                                                                 
+ conv2d_6 (Conv2D)(3,3)      (None, 2, 2, 3)           84        
+                                                                 
+ conv2d_7 (Conv2D)(1,2)      (None, 2, 1, 3)           21        
+                                                                 
+ dense_4 (Dense)(1000, relu) (None, 2, 1, 1000)        4000      
+                                                                 
+ dense_5 (Dense)(1, softmax) (None, 2, 1, 1)           1001      
+                                                                 
+ flatten_1 (Flatten)         (None, 2)                 0         
+                                                                 
+=================================================================
+Total params: 5,136
+Trainable params: 5,136
+Non-trainable params: 0
+epochs 5
+loss: 0.0070 - accuracy: 0.9989 - val_loss: 0.0068 - val_accuracy: 0.9989
+
+2) Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ conv2d (Conv2D)(3,3)        (None, 4, 4, 3)           30        
+                                                                 
+ conv2d_1 (Conv2D)           (None, 2, 2, 3)           84        
+                                                                 
+ flatten (Flatten)           (None, 12)                0         
+                                                                 
+ dense (Dense) relu          (None, 1000)              13000     
+                                                                 
+ dense_1 (Dense) relu        (None, 100)               100100    
+                                                                 
+ dense_2 (Dense) softmax     (None, 2)                 202  
+=================================================================
+Total params: 113,416
+Trainable params: 113,416
+Non-trainable params: 0
+epochs=10
+loss: 0.0064 - accuracy: 0.9989 - val_loss: 0.0066 - val_accuracy: 0.9989
+

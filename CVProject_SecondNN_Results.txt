@@ -1,0 +1,113 @@
+RESULTS FROM CREATING BALANCED DATASET...BUT NOT SUBJECT-DISJOINT DATASETS
+
+How initial tumor and no tumor dataset splits used in training, validation, and testing were segmented:
+Tumor:
+ALL images/files for these patients and side (if Right or Left not listed then it's both sides)-
+'DKU01*Right*' 	'DKU02*Right*' 	'DKU03*Left*' 	'DKU05*Right*' 	'DKU06*' 		'DKU07*Right*' 
+'DKU08*Left*' 	'DKU09*Left*' 	'DKU10*Right*' 	'DKU11*Left*' 	'DKU12*Left*' 	'DKU13*Right*' 
+'DKU14*' 		'DKU15*Right*'	'DKU16*Right*' 	'DKU18*Left*' 	'DKU21*Left*' 	'DKU22*'
+'DKU24*Left*' 	'DKU25*Left*' 	'DKU26*Left*' 	'DKU27*Left*'	'DKU29*Left*' 	'DKU30*Right*' 	
+'DKU31*Left*' 	'DKU32*Right*'
+
+NoTumor:
+All non-tumor images/files for these patients and side- all others
+
+Model Results:
+1)
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ conv2d (Conv2D)(3,3)        (None, 4, 4, 3)           30        
+                                                                 
+ conv2d_1 (Conv2D)           (None, 2, 2, 3)           84        
+                                                                 
+ flatten (Flatten)           (None, 12)                0         
+                                                                 
+ dense (Dense) relu          (None, 1000)              13000     
+                                                                 
+ dense_1 (Dense) relu        (None, 100)               100100    
+                                                                 
+ dense_2 (Dense) softmax     (None, 2)                 202  
+=================================================================
+Total params: 113,416
+Trainable params: 113,416
+Non-trainable params: 0
+epochs=10
+loss: 0.5647 - accuracy: 0.6859 - val_loss: 0.5653 - val_accuracy: 0.6800
+-TESTING-----------------------------
+Number of test images: 15933
+498/498 [==============================] - 1s 2ms/step - loss: 0.5671 - accuracy: 0.6827
+Test loss: 0.5670649409294128
+Test accuracy: 0.682733952999115
+
+2)increased number of filters for conv2D layers (3->6 for 1st, 3->36 for 2nd)
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ conv2d (Conv2D)             (None, 4, 4, 6)           60        
+                                                                 
+ conv2d_1 (Conv2D)           (None, 2, 2, 36)          1980      
+                                                                 
+ flatten (Flatten)           (None, 144)               0         
+                                                                 
+ dense (Dense)               (None, 1000)              145000    
+                                                                 
+ dense_1 (Dense)             (None, 100)               100100    
+                                                                 
+ dense_2 (Dense)             (None, 2)                 202       
+                                                                 
+=================================================================
+Total params: 247,342
+Trainable params: 247,342
+Non-trainable params: 0
+_________________________________________________________________
+ loss: 0.1470 - accuracy: 0.9335 - val_loss: 0.1411 - val_accuracy: 0.9373
+-TESTING-----------------------------
+Number of test images: 15933
+498/498 [==============================] - 1s 2ms/step - loss: 0.1400 - accuracy: 0.9377
+Test loss: 0.1400224268436432
+Test accuracy: 0.9376765489578247
+498/498 [==============================] - 1s 1ms/step
+Confusion Matrix
+[[8511  147]
+ [ 846 6429]]
+
+2) changed last dense activation function to sigmoid and loss to binary cross entropy
+Model stayed the same 
+
+loss: 0.1405 - accuracy: 0.9369 - val_loss: 0.1345 - val_accuracy: 0.9397
+-TESTING-----------------------------
+Number of test images: 15933
+498/498 [==============================] - 1s 2ms/step - loss: 0.1346 - accuracy: 0.9421
+Test loss: 0.13457438349723816
+Test accuracy: 0.9421326518058777
+498/498 [==============================] - 1s 2ms/step
+Confusion Matrix
+[[8382  276]
+ [ 646 6629]]
+
+3) changed back to softmax and categorical
+loss: 0.1698 - accuracy: 0.9247 - val_loss: 0.1453 - val_accuracy: 0.9360
+-TESTING-----------------------------
+Number of test images: 15933
+498/498 [==============================] - 1s 3ms/step - loss: 0.1426 - accuracy: 0.9369
+Test loss: 0.14258332550525665
+Test accuracy: 0.9369233846664429
+498/498 [==============================] - 1s 2ms/step
+Confusion Matrix
+[[8266  392]
+ [ 613 6662]]
+
+4) Increased epochs to 25
+loss: 0.0733 - accuracy: 0.9728 - val_loss: 0.0545 - val_accuracy: 0.9779
+-TESTING-----------------------------
+Number of test images: 15933
+498/498 [==============================] - 1s 3ms/step - loss: 0.0535 - accuracy: 0.9795
+Test loss: 0.05348623916506767
+Test accuracy: 0.9794765710830688
+498/498 [==============================] - 1s 2ms/step
+Confusion Matrix
+[[8525  133]
+ [ 194 7081]]
