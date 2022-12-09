@@ -1,0 +1,236 @@
+Used SUBJECT-DISJOINTED dataset to improve the model to be more realistic
+Validation Data- 	patients 18,21,24
+Testing Data- 	patients 25,26,27
+Training Data- 	All other patients
+
+1) created subject disjointed dataset
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ conv2d (Conv2D)(3,3)        (None, 4, 4, 3)           30        
+                                                                 
+ conv2d_1 (Conv2D)           (None, 2, 2, 3)           84        
+                                                                 
+ flatten (Flatten)           (None, 12)                0         
+                                                                 
+ dense (Dense) relu          (None, 1000)              13000     
+                                                                 
+ dense_1 (Dense) relu        (None, 100)               100100    
+                                                                 
+ dense_2 (Dense) softmax     (None, 2)                 202  
+=================================================================
+Total params: 113,416
+Trainable params: 113,416
+Non-trainable params: 0
+epochs=10
+
+loss: 0.1449 - accuracy: 0.9367 - val_loss: 3.6491 - val_accuracy: 0.5348
+-TESTING-----------------------------
+Number of test images: 17052
+533/533 [==============================] - 1s 2ms/step - loss: 8.3816 - accuracy: 0.4890
+Test loss: 8.381646156311035
+Test accuracy: 0.4890335500240326
+533/533 [==============================] - 4s 1ms/step
+Confusion Matrix
+[[6373 2153]
+ [6560 1966]]
+
+2) added conv2D layer - increased filter size to 32, 64, 128
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ conv2d (Conv2D)             (None, 6, 6, 32)          320       
+                                                                 
+ conv2d_1 (Conv2D)           (None, 4, 4, 64)          18496     
+                                                                 
+ conv2d_2 (Conv2D)           (None, 2, 2, 128)         73856     
+                                                                 
+ flatten (Flatten)           (None, 512)               0         
+                                                                 
+ dense (Dense)               (None, 1000)              513000    
+                                                                 
+ dense_1 (Dense)             (None, 100)               100100    
+                                                                 
+ dense_2 (Dense)             (None, 2)                 202       
+                                                                 
+=================================================================
+Total params: 705,974
+Trainable params: 705,974
+Non-trainable params: 0
+_________________________________________________________________
+epochs = 10
+loss: 0.0799 - accuracy: 0.9678 - val_loss: 5.6028 - val_accuracy: 0.5650
+-TESTING-----------------------------
+Number of test images: 17052
+533/533 [==============================] - 2s 4ms/step - loss: 16.3079 - accuracy: 0.4482
+Test loss: 16.307897567749023
+Test accuracy: 0.4481585621833801
+533/533 [==============================] - 3s 5ms/step
+Confusion Matrix
+[[4880 3646]
+ [5764 2762]]
+
+2) removed Dense - 1000 to reduce # of trainable parameters
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ conv2d (Conv2D)             (None, 6, 6, 32)          320       
+                                                                 
+ conv2d_1 (Conv2D)           (None, 4, 4, 64)          18496     
+                                                                 
+ conv2d_2 (Conv2D)           (None, 2, 2, 128)         73856     
+                                                                 
+ flatten (Flatten)           (None, 512)               0         
+                                                                 
+ dense (Dense)               (None, 100)               51300     
+                                                                 
+ dense_1 (Dense)             (None, 2)                 202       
+                                                                 
+=================================================================
+Total params: 144,174
+Trainable params: 144,174
+Non-trainable params: 0
+_________________________________________________________________
+epochs = 10
+loss: 0.1289 - accuracy: 0.9471 - val_loss: 4.0691 - val_accuracy: 0.5618
+-TESTING-----------------------------
+Number of test images: 17052
+533/533 [==============================] - 2s 4ms/step - loss: 7.8560 - accuracy: 0.5059
+Test loss: 7.855961799621582
+Test accuracy: 0.5058644413948059
+533/533 [==============================] - 2s 3ms/step
+Confusion Matrix
+[[5445 3081]
+ [5345 3181]]
+
+3) added Conv2D with filters=256
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ conv2d (Conv2D)             (None, 6, 6, 32)          320       
+                                                                 
+ conv2d_1 (Conv2D)           (None, 6, 6, 64)          18496     
+                                                                 
+ conv2d_2 (Conv2D)           (None, 4, 4, 128)         73856     
+                                                                 
+ conv2d_3 (Conv2D)           (None, 2, 2, 256)         295168    
+                                                                 
+ flatten (Flatten)           (None, 1024)              0         
+                                                                 
+ dense (Dense)               (None, 100)               102500    
+                                                                 
+ dense_1 (Dense)             (None, 2)                 202       
+                                                                 
+=================================================================
+Total params: 490,542
+Trainable params: 490,542
+Non-trainable params: 0
+_________________________________________________________________
+epochs = 10
+loss: 0.0828 - accuracy: 0.9670 - val_loss: 4.0612 - val_accuracy: 0.5232
+-TESTING-----------------------------
+Number of test images: 17052
+533/533 [==============================] - 3s 6ms/step - loss: 11.3563 - accuracy: 0.5318
+Test loss: 11.356277465820312
+Test accuracy: 0.5317851305007935
+533/533 [==============================] - 3s 5ms/step
+Confusion Matrix
+[[6141 2385]
+ [5599 2927]]
+
+4) increased epochs to 25
+
+Same model
+
+loss: 0.0515 - accuracy: 0.9817 - val_loss: 8.6748 - val_accuracy: 0.5487
+-TESTING-----------------------------
+Number of test images: 17052
+533/533 [==============================] - 2s 4ms/step - loss: 43.2634 - accuracy: 0.4696
+Test loss: 43.263427734375
+Test accuracy: 0.46956369280815125
+533/533 [==============================] - 2s 4ms/step
+Confusion Matrix
+[[5573 2953]
+ [6092 2434]]
+
+5) 
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ conv2d (Conv2D)             (None, 6, 6, 16)          160       
+                                                                 
+ conv2d_1 (Conv2D)           (None, 6, 6, 32)          4640      
+                                                                 
+ conv2d_2 (Conv2D)           (None, 4, 4, 64)          18496     
+                                                                 
+ conv2d_3 (Conv2D)           (None, 2, 2, 128)         73856     
+                                                                 
+ flatten (Flatten)           (None, 512)               0         
+                                                                 
+ dense (Dense)               (None, 100)               51300     
+                                                                 
+ dense_1 (Dense)             (None, 2)                 202       
+                                                                 
+=================================================================
+Total params: 148,654
+Trainable params: 148,654
+Non-trainable params: 0
+_________________________________________________________________
+epochs = 10
+loss: 0.0940 - accuracy: 0.9627 - val_loss: 5.6412 - val_accuracy: 0.5472
+-TESTING-----------------------------
+Number of test images: 17052
+533/533 [==============================] - 1s 2ms/step - loss: 15.0411 - accuracy: 0.5205
+Test loss: 15.041123390197754
+Test accuracy: 0.5204668045043945
+533/533 [==============================] - 1s 2ms/step
+Confusion Matrix
+[[5997 2529]
+ [5648 2878]]
+
+6)reduced number of filters in half for each convolutional layer and added in FC layer of 10
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ conv2d (Conv2D)             (None, 6, 6, 16)          160       
+                                                                 
+ conv2d_1 (Conv2D)           (None, 6, 6, 32)          4640      
+                                                                 
+ conv2d_2 (Conv2D)           (None, 4, 4, 64)          18496     
+                                                                 
+ conv2d_3 (Conv2D)           (None, 2, 2, 128)         73856     
+                                                                 
+ flatten (Flatten)           (None, 512)               0         
+                                                                 
+ dense (Dense)               (None, 100)               51300     
+                                                                 
+ dense_1 (Dense)             (None, 10)                1010      
+                                                                 
+ dense_2 (Dense)             (None, 2)                 22        
+                                                                 
+=================================================================
+Total params: 149,484
+Trainable params: 149,484
+Non-trainable params: 0
+_________________________________________________________________
+epochs = 10
+loss: 14.2928 - accuracy: 0.4472
+Test loss: 14.292813301086426
+Test accuracy: 0.4472202658653259
+533/533 [==============================] - 1s 2ms/step
+Confusion Matrix
+[[5284 3242]
+ [6184 2342]]
+
+
+
+
+
+
+
+
+
+
+
+
