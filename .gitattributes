@@ -1,0 +1,14 @@
+ConfusionMatrix_BalancedSet_SoftmaxCategorical_Improved.png filter=lfs diff=lfs merge=lfs -text
+ROC_BalancedSet_SigmoidBinary.png filter=lfs diff=lfs merge=lfs -text
+ROC_BalancedSet_SoftmaxCategorical.png filter=lfs diff=lfs merge=lfs -text
+Accuracy_SubjectDisjoint_SoftmaxCategorical.png filter=lfs diff=lfs merge=lfs -text
+Loss_BalancedSet_SoftmaxCategorical_Improved.png filter=lfs diff=lfs merge=lfs -text
+ROC_BalancedSet_SoftmaxCategorical_Improved.png filter=lfs diff=lfs merge=lfs -text
+ROC_SubjectDisjoint_SoftmaxCategorical.png filter=lfs diff=lfs merge=lfs -text
+ConfusionMatrix_UnbalancedSet.png filter=lfs diff=lfs merge=lfs -text
+ConfusionMatrix_BalancedSet_SigmoidBinary.png filter=lfs diff=lfs merge=lfs -text
+ConfusionMatrix_SubjectDisjoint_SoftmaxCategorical.png filter=lfs diff=lfs merge=lfs -text
+ConfusionMatrix_BalancedSetFirstRun.png filter=lfs diff=lfs merge=lfs -text
+ConfusionMatrix_BalancedSet_SoftmaxCategorical.png filter=lfs diff=lfs merge=lfs -text
+Loss_SubjectDisjoint_SoftmaxCategorical.png filter=lfs diff=lfs merge=lfs -text
+Accuracy_BalancedSet_SoftmaxCategorical_Improved.png filter=lfs diff=lfs merge=lfs -text
