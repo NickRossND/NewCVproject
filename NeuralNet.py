@@ -1,3 +1,8 @@
+###############################################
+# Before running this code, extract all the data held in "SubjectDisjointedDataset.zip".
+# This zip file contains all the training, testing, and validation datasets
+
+###############################################
 import glob
 import fnmatch
 import numpy as np
